@@ -11,15 +11,19 @@ import json
 import sys
 
 
-def cleaning(csvfile, clean_csvfile):
+# FUNCTION TO CONVERT ALL PLACES IN shootings.csv TO ZIP CODES
+# 1033,Granby,Massachusetts,MA,Hampshire,42.2557,-72.52
+
+def cleaning(csvfile, clean_csvfile, zipcodes):
     data = []
-    southeast_asia = []
+    location = []
+    postalcodes = []
     csv_file = open(csvfile, "r")
 
     for row in csv_file:
         splitted = row.split(',')
         data.append(splitted)
-
+    print(data)
     # finding all data from Southeast Asian countries
     for row in data:
         if row[1] == "Southeastern Asia":
@@ -36,5 +40,5 @@ def cleaning(csvfile, clean_csvfile):
             writer.writerow(southeast_asia[x])
             x += 1
 
-#  this function was applied to the following two similar datasets
-cleaning('shootings.csv', 'clean_happ2016.csv')
+#  function ran on shootings.csv and us_zipcodes.csv
+# cleaning('/datasets/shootings.csv', 'clean_csvfile.csv', '/datasets/us_zipcodes.csv')
